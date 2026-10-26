@@ -12,6 +12,7 @@ dependencies = ["numpy>=1.26"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]
+ml = ["pandas>=2.1", "scikit-learn>=1.4"]
 
 [project.scripts]
 footpredict = "footpredict.cli:main"

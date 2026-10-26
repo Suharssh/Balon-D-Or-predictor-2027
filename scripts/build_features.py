@@ -236,13 +236,13 @@ def main() -> int:
                 # nation in 2022-2025 was in that squad (checked by hand).
                 if f["competition"] in INTERNATIONAL and norm(COUNTRY_ALIASES.get(f["winner"], f["winner"])) == norm(prof_country.get(pid, "")):
                     credited.setdefault((ed, f["competition"], f["winner"], "by citizenship"), []).append(name)
+                    won_intl = 1
                 elif f["competition"] not in INTERNATIONAL:
                     _warn(f"{f['competition']} {f['final_date']}: no appearance data; nobody credited")
-                    won_intl = 1
                 continue
             played = a[a["competition_id"].isin(ids_f) & (a["player_club_id"] == team)]
-            credited.setdefault((ed, f["competition"], f["winner"], team), []).append(name) if len(played) else None
             if len(played):
+                credited.setdefault((ed, f["competition"], f["winner"], team), []).append(name)
                 if f["competition"] in INTERNATIONAL:
                     won_intl = 1
                 else:

@@ -228,12 +228,16 @@ def main() -> int:
         for _, f in finals[finals["edition"] == ed].iterrows():
             ids_f = comp_ids.get(f["competition"], [])
             team = winner_team_id(f["competition"], f["final_date"], f["winner"], ids_f, games, start, end)
-            if team is None:
-                # Older tournaments are missing from the dataset. For national teams,
+            has_apps = bool(apps["competition_id"].isin(ids_f).loc[apps["date"].between(start, end)].any())
+            if team is None or not has_apps:
+                # Older tournaments are missing from the dataset (no games, or games
+                # without player appearances). For national teams,
                 # fall back to citizenship: every shortlisted player from a winning
                 # nation in 2022-2025 was in that squad (checked by hand).
                 if f["competition"] in INTERNATIONAL and norm(COUNTRY_ALIASES.get(f["winner"], f["winner"])) == norm(prof_country.get(pid, "")):
                     credited.setdefault((ed, f["competition"], f["winner"], "by citizenship"), []).append(name)
+                elif f["competition"] not in INTERNATIONAL:
+                    _warn(f"{f['competition']} {f['final_date']}: no appearance data; nobody credited")
                     won_intl = 1
                 continue
             played = a[a["competition_id"].isin(ids_f) & (a["player_club_id"] == team)]

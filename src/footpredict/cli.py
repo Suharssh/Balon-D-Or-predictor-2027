@@ -75,6 +75,53 @@ def cmd_simulate(args: argparse.Namespace) -> int:
     return 0
 
 
+def _load_rf_features(path: Path):
+    try:
+        import pandas as pd
+        from . import forest
+    except ImportError:
+        print("the random forest needs the ml extra: pip install -e '.[ml]'", file=sys.stderr)
+        raise SystemExit(2)
+    return forest, forest.prepare(pd.read_csv(path))
+
+
+def cmd_rf_backtest(args: argparse.Namespace) -> int:
+    forest, df = _load_rf_features(args.features)
+    res = forest.backtest(df, past_only=args.past_only, seed=args.seed)
+    setup = "trained on earlier editions only" if args.past_only else "leave-one-edition-out"
+    print(f"backtest ({setup})")
+    print(f"{'edition':<8} {'model':<20} {'predicted winner':<22} {'actual winner':<22} {'hit':>4} {'top3':>5} {'rank corr':>9}")
+    for r in res.itertuples():
+        print(f"{r.edition:<8} {r.model:<20} {r.predicted_winner:<22} {r.actual_winner:<22} "
+              f"{'yes' if r.winner_hit else 'no':>4} {r.top3_overlap:>4}/3 {r.spearman:>9.2f}")
+    print("\naverages")
+    summary = res.groupby("model")[["winner_hit", "top3_overlap", "spearman"]].mean()
+    for model, r in summary.sort_values("spearman", ascending=False).iterrows():
+        print(f"  {model:<20} winners {r.winner_hit:.0%}  top-3 overlap {r.top3_overlap:.2f}/3  rank corr {r.spearman:.2f}")
+    return 0
+
+
+def cmd_rf_predict(args: argparse.Namespace) -> int:
+    forest, df = _load_rf_features(args.features)
+    train = df[df["points_share"].notna() & (df["edition"] < args.edition)]
+    test = df[df["edition"] == args.edition]
+    if test.empty:
+        print(f"no features for {args.edition}", file=sys.stderr)
+        return 1
+    spec = find_spec(args.award, args.edition, args.specs)
+    pred = forest.fit_predict(train, test, seed=args.seed)
+    total = spec.jury.voters * spec.jury.points_per_ballot
+    eds = sorted(train["edition"].unique())
+    print(f"random forest trained on {eds[0]}-{eds[-1]} ({len(train)} player-seasons)")
+    print(f"{'player':<26} {'pred pts':>8} {'win':>6} {'podium':>7}")
+    for r in pred.table.head(args.top).itertuples():
+        print(f"{r.player:<26} {r.pred_share * total:>8.0f} {r.win_prob:>6.1%} {r.podium_prob:>7.1%}")
+    print("\nmost important features")
+    for name, v in forest.importances(df[df["edition"] < args.edition], seed=args.seed).head(6).items():
+        print(f"  {name:<30} {v:.2f}")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="footpredict", description=__doc__)
     p.add_argument("--specs", type=Path, default=Path("specs"))
@@ -102,6 +149,20 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--seed", type=int, default=0)
     s.add_argument("--top", type=int, default=10)
     s.set_defaults(func=cmd_simulate)
+
+    features = Path("data/features/ballon_dor_men.csv")
+    b = sub.add_parser("rf-backtest", help="backtest the random forest against simple baselines")
+    b.add_argument("--features", type=Path, default=features)
+    b.add_argument("--past-only", action="store_true", help="train only on editions before the one being tested")
+    b.add_argument("--seed", type=int, default=0)
+    b.set_defaults(func=cmd_rf_backtest)
+
+    r = sub.add_parser("rf-predict", help="predict an edition with the random forest")
+    r.add_argument("edition", type=int)
+    r.add_argument("--features", type=Path, default=features)
+    r.add_argument("--seed", type=int, default=0)
+    r.add_argument("--top", type=int, default=10)
+    r.set_defaults(func=cmd_rf_predict)
     return p
 
 

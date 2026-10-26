@@ -1,0 +1,92 @@
+player,player_id,tm_name,date_of_birth,position,country,how,n_candidates
+Achraf Hakimi,398073,Achraf Hakimi,1998-11-04 00:00:00,Defender,Morocco,exact,1
+Ademola Lookman,406040,Ademola Lookman,1997-10-20 00:00:00,Attack,Nigeria,exact,1
+Alexis Mac Allister,534033,Alexis Mac Allister,1998-12-24 00:00:00,Midfield,Argentina,exact,1
+André Onana,234509,André Onana,1996-04-02 00:00:00,Goalkeeper,Cameroon,exact,1
+Antoine Griezmann,125781,Antoine Griezmann,1991-03-21 00:00:00,Attack,France,exact,1
+Antonio Rüdiger,86202,Antonio Rüdiger,1993-03-03 00:00:00,Defender,Germany,exact,1
+Artem Dovbyk,343537,Artem Dovbyk,1997-06-21 00:00:00,Attack,Ukraine,exact,1
+Bernardo Silva,241641,Bernardo Silva,1994-08-10 00:00:00,Midfield,Portugal,exact,1
+Bruno Fernandes,240306,Bruno Fernandes,1994-09-08 00:00:00,Midfield,Portugal,exact,1
+Bukayo Saka,433177,Bukayo Saka,2001-09-05 00:00:00,Attack,England,exact,1
+Casemiro,16306,Casemiro,1992-02-23 00:00:00,Midfield,Brazil,exact,1
+Christopher Nkunku,344381,Christopher Nkunku,1997-11-14 00:00:00,Attack,France,exact,1
+Cole Palmer,568177,Cole Palmer,2002-05-06 00:00:00,Midfield,England,exact,1
+Cristiano Ronaldo,8198,Cristiano Ronaldo,1985-02-05 00:00:00,Attack,Portugal,exact,1
+Dani Carvajal,138927,Daniel Carvajal,1992-01-11 00:00:00,Defender,Spain,override,1
+Dani Olmo,293385,Dani Olmo,1998-05-07 00:00:00,Midfield,Spain,exact,1
+Darwin Núñez,546543,Darwin Núñez,1999-06-24 00:00:00,Attack,Uruguay,exact,1
+Dayot Upamecano,344695,Dayot Upamecano,1998-10-27 00:00:00,Defender,France,exact,1
+Declan Rice,357662,Declan Rice,1999-01-14 00:00:00,Midfield,England,exact,1
+Denzel Dumfries,321528,Denzel Dumfries,1996-04-18 00:00:00,Defender,Netherlands,exact,1
+Dušan Vlahović,357498,Dušan Vlahović,2000-01-28 00:00:00,Attack,Serbia,exact,1
+Désiré Doué,914562,Désiré Doué,2005-06-03 00:00:00,Attack,France,exact,1
+Emiliano Martínez,111873,Emiliano Martínez,1992-09-02 00:00:00,Goalkeeper,Argentina,exact,2
+Erling Haaland,418560,Erling Haaland,2000-07-21 00:00:00,Attack,Norway,exact,1
+Fabinho,225693,Fabinho,1993-10-23 00:00:00,Midfield,Brazil,exact,1
+Fabián Ruiz,350219,Fabián Ruiz,1996-04-03 00:00:00,Midfield,Spain,exact,1
+Federico Valverde,369081,Federico Valverde,1998-07-22 00:00:00,Midfield,Uruguay,exact,1
+Ferran Torres,398184,Ferran Torres,2000-02-29 00:00:00,Attack,Spain,exact,1
+Florian Wirtz,598577,Florian Wirtz,2003-05-03 00:00:00,Midfield,Germany,exact,1
+Gabriel Magalhães,435338,Gabriel,1997-12-19 00:00:00,Defender,Brazil,tokens,1
+Gianluigi Donnarumma,315858,Gianluigi Donnarumma,1999-02-25 00:00:00,Goalkeeper,Italy,exact,1
+Granit Xhaka,111455,Granit Xhaka,1992-09-27 00:00:00,Midfield,Switzerland,exact,1
+Hakan Çalhanoğlu,126414,Hakan Çalhanoğlu,1994-02-08 00:00:00,Midfield,Türkiye,exact,1
+Harry Kane,132098,Harry Kane,1993-07-28 00:00:00,Attack,England,exact,1
+Jamal Musiala,580195,Jamal Musiala,2003-02-26 00:00:00,Midfield,Germany,exact,1
+Joshua Kimmich,161056,Joshua Kimmich,1995-02-08 00:00:00,Midfield,Germany,exact,1
+João Cancelo,182712,João Cancelo,1994-05-27 00:00:00,Defender,Portugal,exact,1
+João Neves,670681,João Neves,2004-09-27 00:00:00,Midfield,Portugal,exact,1
+Joško Gvardiol,475959,Josko Gvardiol,2002-01-23 00:00:00,Defender,Croatia,exact,1
+Jude Bellingham,581678,Jude Bellingham,2003-06-29 00:00:00,Midfield,England,exact,1
+Julián Quiñones,416090,Julián Quiñones,1997-03-24 00:00:00,Attack,Mexico,exact,1
+Julián Álvarez,576024,Julián Alvarez,2000-01-31 00:00:00,Attack,Argentina,exact,1
+Karim Benzema,18922,Karim Benzema,1987-12-19 00:00:00,Attack,France,exact,1
+Kevin De Bruyne,88755,Kevin De Bruyne,1991-06-28 00:00:00,Midfield,Belgium,exact,1
+Khvicha Kvaratskhelia,502670,Khvicha Kvaratskhelia,2001-02-12 00:00:00,Attack,Georgia,exact,1
+Kim Min-jae,503482,Min-jae Kim,1996-11-15 00:00:00,Defender,"Korea, South",tokens,1
+Kylian Mbappé,342229,Kylian Mbappé,1998-12-20 00:00:00,Attack,France,exact,1
+Lamine Yamal,937958,Lamine Yamal,2007-07-13 00:00:00,Attack,Spain,exact,1
+Lautaro Martínez,406625,Lautaro Martínez,1997-08-22 00:00:00,Attack,Argentina,exact,1
+Lionel Messi,28003,Lionel Messi,1987-06-24 00:00:00,Attack,Argentina,exact,1
+Luis Díaz,480692,Luis Díaz,1997-01-13 00:00:00,Attack,Colombia,exact,1
+Luka Modrić,27992,Luka Modrić,1985-09-09 00:00:00,Midfield,Croatia,exact,1
+Marc Cucurella,284857,Marc Cucurella,1998-07-22 00:00:00,Defender,Spain,exact,1
+Marquinhos,181767,Marquinhos,1994-05-14 00:00:00,Defender,Brazil,exact,3
+Martin Ødegaard,316264,Martin Ødegaard,1998-12-17 00:00:00,Midfield,Norway,exact,1
+Mats Hummels,39728,Mats Hummels,1988-12-16 00:00:00,Defender,Germany,exact,1
+Michael Olise,566723,Michael Olise,2001-12-12 00:00:00,Attack,France,exact,1
+Mike Maignan,182906,Mike Maignan,1995-07-03 00:00:00,Goalkeeper,France,exact,1
+Mohamed Salah,148455,Mohamed Salah,1992-06-15 00:00:00,Attack,Egypt,exact,1
+Nico Williams,709187,Nico Williams,2002-07-12 00:00:00,Attack,Spain,exact,1
+Nicolò Barella,255942,Nicolò Barella,1997-02-07 00:00:00,Midfield,Italy,exact,1
+Nuno Mendes,616341,Nuno Mendes,2002-06-19 00:00:00,Defender,Portugal,exact,1
+Ousmane Dembélé,288230,Ousmane Dembélé,1997-05-15 00:00:00,Attack,France,exact,1
+Pau Cubarsí,962110,Pau Cubarsí,2007-01-22 00:00:00,Defender,Spain,exact,1
+Pedri,683840,Pedri,2002-11-25 00:00:00,Midfield,Spain,exact,1
+Phil Foden,406635,Phil Foden,2000-05-28 00:00:00,Midfield,England,exact,1
+Rafael Leão,357164,Rafael Leão,1999-06-10 00:00:00,Attack,Portugal,exact,1
+Randal Kolo Muani,487969,Randal Kolo Muani,1998-12-05 00:00:00,Attack,France,exact,1
+Raphinha,411295,Raphinha,1996-12-14 00:00:00,Attack,Brazil,exact,1
+Riyad Mahrez,171424,Riyad Mahrez,1991-02-21 00:00:00,Attack,Algeria,exact,1
+Robert Lewandowski,38253,Robert Lewandowski,1988-08-21 00:00:00,Attack,Poland,exact,1
+Rodri,357565,Rodri,1996-06-22 00:00:00,Midfield,Spain,exact,1
+Rúben Dias,258004,Rúben Dias,1997-05-14 00:00:00,Defender,Portugal,exact,1
+Sadio Mané,200512,Sadio Mané,1992-04-10 00:00:00,Attack,Senegal,exact,1
+Scott McTominay,315969,Scott McTominay,1996-12-08 00:00:00,Midfield,Scotland,exact,1
+Serhou Guirassy,270541,Serhou Guirassy,1996-03-12 00:00:00,Attack,Guinea,exact,1
+Son Heung-min,91845,Heung-min Son,1992-07-08 00:00:00,Attack,"Korea, South",tokens,2
+Sébastien Haller,181375,Sébastien Haller,1994-06-22 00:00:00,Attack,Cote d'Ivoire,exact,1
+Thibaut Courtois,108390,Thibaut Courtois,1992-05-11 00:00:00,Goalkeeper,Belgium,exact,1
+Toni Kroos,31909,Toni Kroos,1990-01-04 00:00:00,Midfield,Germany,exact,1
+Trent Alexander-Arnold,314353,Trent Alexander-Arnold,1998-10-07 00:00:00,Defender,England,exact,1
+Victor Osimhen,401923,Victor Osimhen,1998-12-29 00:00:00,Attack,Nigeria,exact,1
+Viktor Gyökeres,325443,Viktor Gyökeres,1998-06-04 00:00:00,Attack,Sweden,exact,1
+Vinícius Júnior,371998,Vinicius Junior,2000-07-12 00:00:00,Attack,Brazil,exact,1
+Virgil van Dijk,139208,Virgil van Dijk,1991-07-08 00:00:00,Defender,Netherlands,exact,1
+Vitinha,487469,Vitinha,2000-02-13 00:00:00,Midfield,Portugal,exact,2
+William Saliba,495666,William Saliba,2001-03-24 00:00:00,Defender,France,exact,1
+Willian Pacho,661171,Willian Pacho,2001-10-16 00:00:00,Defender,Ecuador,exact,1
+Yassine Bounou,207834,Yassine Bounou,1991-04-05 00:00:00,Goalkeeper,Morocco,exact,1
+Álex Grimaldo,193082,Alejandro Grimaldo,1995-09-20 00:00:00,Defender,Spain,override,1
+İlkay Gündoğan,53622,İlkay Gündoğan,1990-10-24 00:00:00,Midfield,Germany,exact,1

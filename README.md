@@ -24,6 +24,44 @@ Lamine Yamal                 27.7%   30.3%   76.7%   97.1%    1000
 Kylian Mbappé                 4.9%    9.6%   43.4%   85.3%     660
 ```
 
+## Random forest model
+
+```bash
+pip install -e '.[ml]'
+footpredict rf-backtest              # hold out each past edition, compare with simple baselines
+footpredict rf-backtest --past-only  # train only on earlier editions (tests 2024 and 2025)
+footpredict rf-predict 2026
+```
+
+A random forest (1,000 trees) predicts each shortlisted player's share of the points from their stats in the eligibility window. Win and podium probabilities are the share of trees that put a player 1st or in the top 3.
+
+Leave-one-edition-out backtest, 2022 to 2025:
+
+| Model | Winners right | Top-3 overlap | Rank correlation |
+|---|---|---|---|
+| Random forest | 1 of 4 | 1.25 / 3 | 0.52 |
+| Goals + assists | 1 of 4 | 0.75 / 3 | 0.34 |
+| Last year's points | 0 of 3 | 0.33 / 3 | 0.34 |
+| Market value | 0 of 4 | 1.00 / 3 | 0.14 |
+
+With only four editions (120 player-seasons) to learn from, treat this as a first baseline, not a forecast to bet on.
+
+### Features (`data/features/ballon_dor_men.csv`)
+
+Built by `scripts/build_features.py` from [transfermarkt-datasets](https://github.com/dcaribou/transfermarkt-datasets), a free dataset of every appearance in the major competitions. It runs in GitHub Actions (`.github/workflows/build-features.yml`) and commits the result.
+
+- Minutes, goals, assists, goals + assists per 90, league goals + assists, all inside the edition's window
+- Champions League minutes, goals + assists, and goals + assists in knockout rounds
+- Won the Champions League, a major international tournament, or the domestic league
+- Market value at the end of the window, age, position
+- Share of points in the previous edition
+
+Known gaps:
+
+- The dataset stops on 6 Jul 2026, so 2026 is missing the last World Cup knockout games. World Cup winners come from `data/trophies/major_finals.csv`, a hand-checked list of finals.
+- Player appearances exist only for the newest international tournaments. Earlier titles are credited by citizenship, which is correct for every shortlisted player from 2022 to 2025. Tournament goals and minutes are not used for the same reason.
+- Name matches are in `data/players/tm_matches.csv`; fixes go in `data/players/tm_overrides.csv`.
+
 ## How it works
 
 - **Award specs** (`specs/<award>_<edition>.toml`): eligibility window, decider type, number of voters, points per ballot place, tie-break rule. Nothing award-specific is hard-coded, so adding The Best FIFA or the women's Ballon d'Or means writing a spec, not code.

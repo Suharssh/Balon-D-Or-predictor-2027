@@ -1,0 +1,42 @@
+name: Build features
+
+# Downloads transfermarkt-datasets, rebuilds data/features/ and data/players/tm_matches.csv,
+# and commits them back to the branch if they changed.
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/build_features.py"
+      - "data/trophies/**"
+      - "data/players/tm_overrides.csv"
+      - "data/history/**"
+      - "data/shortlists/**"
+      - "specs/**"
+      - ".github/workflows/build-features.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/cache@v4
+        with:
+          path: .cache/transfermarkt
+          key: transfermarkt-2026-07-06
+      - run: pip install pandas
+      - run: python scripts/build_features.py
+      - name: Commit outputs
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/features data/players/tm_matches.csv || true
+          if git diff --cached --quiet; then echo "no changes"; exit 0; fi
+          git commit -m "Rebuild features from transfermarkt-datasets"
+          git push

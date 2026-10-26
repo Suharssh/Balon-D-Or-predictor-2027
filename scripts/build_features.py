@@ -19,6 +19,7 @@ import re
 import sys
 import tomllib
 import unicodedata
+import urllib.request
 from pathlib import Path
 
 import pandas as pd
@@ -51,7 +52,10 @@ def load_tables(cache: Path) -> dict[str, pd.DataFrame]:
         path = cache / f"{t}.csv.gz"
         if not path.exists():
             print(f"downloading {t}", flush=True)
-            pd.read_csv(f"{BASE_URL}/{t}.csv.gz", low_memory=False).to_csv(path, index=False)
+            # The host rejects Python's default user agent.
+            req = urllib.request.Request(f"{BASE_URL}/{t}.csv.gz", headers={"User-Agent": "curl/8.5.0"})
+            with urllib.request.urlopen(req) as r, open(path, "wb") as f:
+                f.write(r.read())
         out[t] = pd.read_csv(path, low_memory=False)
         print(f"{t}: {len(out[t]):,} rows; columns {list(out[t].columns)}", flush=True)
     for t in ("appearances", "games", "player_valuations"):

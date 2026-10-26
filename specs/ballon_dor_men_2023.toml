@@ -1,0 +1,15 @@
+award = "ballon_dor_men"
+edition = 2023
+shortlist_size = 30
+notes = "Voter count inferred from published totals (1,472 points / 16 per ballot)."
+sources = ["https://en.wikipedia.org/wiki/2023_Ballon_d%27Or"]
+
+[window]
+start = 2022-08-01
+end = 2023-07-31
+
+[decider]
+type = "jury"
+voters = 92
+points = [6, 4, 3, 2, 1]
+tiebreak = "rank_counts"

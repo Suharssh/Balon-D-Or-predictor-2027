@@ -1,0 +1,121 @@
+year,rank,player,club,nationality,points
+2022,1,Karim Benzema,Real Madrid,France,549
+2022,2,Sadio Mané,Liverpool,Senegal,193
+2022,3,Kevin De Bruyne,Manchester City,Belgium,175
+2022,4,Robert Lewandowski,Bayern Munich,Poland,170
+2022,5,Mohamed Salah,Liverpool,Egypt,116
+2022,6,Kylian Mbappé,Paris Saint-Germain,France,85
+2022,7,Thibaut Courtois,Real Madrid,Belgium,82
+2022,8,Vinícius Júnior,Real Madrid,Brazil,61
+2022,9,Luka Modrić,Real Madrid,Croatia,20
+2022,10,Erling Haaland,Borussia Dortmund,Norway,18
+2022,11,Son Heung-min,Tottenham Hotspur,South Korea,5
+2022,12,Riyad Mahrez,Manchester City,Algeria,4
+2022,13,Sébastien Haller,Ajax,Ivory Coast,2
+2022,13,Fabinho,Liverpool,Brazil,2
+2022,13,Rafael Leão,AC Milan,Portugal,2
+2022,16,Virgil van Dijk,Liverpool,Netherlands,1
+2022,16,Casemiro,Real Madrid,Brazil,1
+2022,16,Luis Díaz,Liverpool,Colombia,1
+2022,16,Dušan Vlahović,Juventus,Serbia,1
+2022,20,Cristiano Ronaldo,Manchester United,Portugal,0
+2022,20,Harry Kane,Tottenham Hotspur,England,0
+2022,20,Trent Alexander-Arnold,Liverpool,England,0
+2022,20,Phil Foden,Manchester City,England,0
+2022,20,Bernardo Silva,Manchester City,Portugal,0
+2022,20,João Cancelo,Manchester City,Portugal,0
+2022,20,Joshua Kimmich,Bayern Munich,Germany,0
+2022,20,Mike Maignan,AC Milan,France,0
+2022,20,Christopher Nkunku,RB Leipzig,France,0
+2022,20,Darwin Núñez,Benfica,Uruguay,0
+2022,20,Antonio Rüdiger,Chelsea,Germany,0
+2023,1,Lionel Messi,Inter Miami,Argentina,462
+2023,2,Erling Haaland,Manchester City,Norway,357
+2023,3,Kylian Mbappé,Paris Saint-Germain,France,270
+2023,4,Kevin De Bruyne,Manchester City,Belgium,100
+2023,5,Rodri,Manchester City,Spain,57
+2023,6,Vinícius Júnior,Real Madrid,Brazil,49
+2023,7,Julián Álvarez,Manchester City,Argentina,28
+2023,8,Victor Osimhen,Napoli,Nigeria,24
+2023,9,Bernardo Silva,Manchester City,Portugal,20
+2023,10,Luka Modrić,Real Madrid,Croatia,19
+2023,11,Mohamed Salah,Liverpool,Egypt,13
+2023,12,Robert Lewandowski,Barcelona,Poland,12
+2023,13,Yassine Bounou,Sevilla,Morocco,10
+2023,14,İlkay Gündoğan,Manchester City,Germany,8
+2023,15,Emiliano Martínez,Aston Villa,Argentina,7
+2023,16,Karim Benzema,Real Madrid,France,6
+2023,17,Khvicha Kvaratskhelia,Napoli,Georgia,6
+2023,18,Jude Bellingham,Borussia Dortmund,England,5
+2023,19,Harry Kane,Tottenham Hotspur,England,4
+2023,20,Lautaro Martínez,Inter Milan,Argentina,4
+2023,21,Antoine Griezmann,Atlético Madrid,France,4
+2023,22,Kim Min-jae,Napoli,South Korea,3
+2023,23,André Onana,Inter Milan,Cameroon,2
+2023,24,Bukayo Saka,Arsenal,England,1
+2023,25,Joško Gvardiol,RB Leipzig,Croatia,1
+2023,26,Jamal Musiala,Bayern Munich,Germany,0
+2023,26,Nicolò Barella,Inter Milan,Italy,0
+2023,26,Randal Kolo Muani,Eintracht Frankfurt,France,0
+2023,26,Martin Ødegaard,Arsenal,Norway,0
+2023,26,Rúben Dias,Manchester City,Portugal,0
+2024,1,Rodri,Manchester City,Spain,1170
+2024,2,Vinícius Júnior,Real Madrid,Brazil,1129
+2024,3,Jude Bellingham,Real Madrid,England,917
+2024,4,Dani Carvajal,Real Madrid,Spain,550
+2024,5,Erling Haaland,Manchester City,Norway,432
+2024,6,Kylian Mbappé,Paris Saint-Germain,France,420
+2024,7,Lautaro Martínez,Inter Milan,Argentina,402
+2024,8,Lamine Yamal,Barcelona,Spain,383
+2024,9,Toni Kroos,Real Madrid,Germany,291
+2024,10,Harry Kane,Bayern Munich,England,201
+2024,11,Phil Foden,Manchester City,England,157
+2024,12,Florian Wirtz,Bayer Leverkusen,Germany,101
+2024,13,Dani Olmo,RB Leipzig,Spain,86
+2024,14,Ademola Lookman,Atalanta,Nigeria,82
+2024,15,Nico Williams,Athletic Bilbao,Spain,73
+2024,16,Granit Xhaka,Bayer Leverkusen,Switzerland,60
+2024,17,Federico Valverde,Real Madrid,Uruguay,58
+2024,18,Emiliano Martínez,Aston Villa,Argentina,28
+2024,19,Martin Ødegaard,Arsenal,Norway,16
+2024,20,Hakan Çalhanoğlu,Inter Milan,Turkey,15
+2024,21,Bukayo Saka,Arsenal,England,14
+2024,22,Antonio Rüdiger,Real Madrid,Germany,13
+2024,23,Rúben Dias,Manchester City,Portugal,8
+2024,23,William Saliba,Arsenal,France,8
+2024,25,Cole Palmer,Chelsea,England,7
+2024,26,Declan Rice,Arsenal,England,5
+2024,26,Vitinha,Paris Saint-Germain,Portugal,5
+2024,28,Álex Grimaldo,Bayer Leverkusen,Spain,2
+2024,29,Artem Dovbyk,Girona,Ukraine,0
+2024,29,Mats Hummels,Borussia Dortmund,Germany,0
+2025,1,Ousmane Dembélé,Paris Saint-Germain,France,1380
+2025,2,Lamine Yamal,Barcelona,Spain,1059
+2025,3,Vitinha,Paris Saint-Germain,Portugal,703
+2025,4,Mohamed Salah,Liverpool,Egypt,657
+2025,5,Raphinha,Barcelona,Brazil,620
+2025,6,Achraf Hakimi,Paris Saint-Germain,Morocco,484
+2025,7,Kylian Mbappé,Real Madrid,France,378
+2025,8,Cole Palmer,Chelsea,England,211
+2025,9,Gianluigi Donnarumma,Paris Saint-Germain,Italy,172
+2025,10,Nuno Mendes,Paris Saint-Germain,Portugal,171
+2025,11,Pedri,Barcelona,Spain,124
+2025,12,Khvicha Kvaratskhelia,Paris Saint-Germain,Georgia,123
+2025,13,Harry Kane,Bayern Munich,England,112
+2025,14,Désiré Doué,Paris Saint-Germain,France,74
+2025,15,Viktor Gyökeres,Sporting CP,Sweden,56
+2025,16,Vinícius Júnior,Real Madrid,Brazil,51
+2025,17,Robert Lewandowski,Barcelona,Poland,49
+2025,18,Scott McTominay,Napoli,Scotland,45
+2025,19,João Neves,Paris Saint-Germain,Portugal,40
+2025,20,Lautaro Martínez,Inter Milan,Argentina,37
+2025,21,Serhou Guirassy,Borussia Dortmund,Guinea,25
+2025,22,Alexis Mac Allister,Liverpool,Argentina,21
+2025,22,Jude Bellingham,Real Madrid,England,21
+2025,24,Fabián Ruiz,Paris Saint-Germain,Spain,20
+2025,24,Denzel Dumfries,Inter Milan,Netherlands,20
+2025,26,Erling Haaland,Manchester City,Norway,18
+2025,27,Declan Rice,Arsenal,England,13
+2025,28,Virgil van Dijk,Liverpool,Netherlands,7
+2025,29,Florian Wirtz,Bayer Leverkusen,Germany,5
+2025,30,Michael Olise,Bayern Munich,France,4

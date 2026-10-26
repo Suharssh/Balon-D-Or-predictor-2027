@@ -1,0 +1,15 @@
+award = "ballon_dor_men"
+edition = 2025
+shortlist_size = 30
+notes = "Window ends with the 2025 Club World Cup final. 6,700 points / 67 per ballot = 100 voters."
+sources = ["https://en.wikipedia.org/wiki/2025_Ballon_d%27Or"]
+
+[window]
+start = 2024-08-01
+end = 2025-07-13
+
+[decider]
+type = "jury"
+voters = 100
+points = [15, 12, 10, 8, 7, 5, 4, 3, 2, 1]
+tiebreak = "rank_counts"

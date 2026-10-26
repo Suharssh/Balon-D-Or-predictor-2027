@@ -1,0 +1,15 @@
+award = "ballon_dor_men"
+edition = 2024
+shortlist_size = 30
+notes = "First edition with UEFA as co-organiser and a top-10 ballot. Voter count inferred from published totals (6,633 points / 67 per ballot)."
+sources = ["https://en.wikipedia.org/wiki/2024_Ballon_d%27Or"]
+
+[window]
+start = 2023-08-01
+end = 2024-07-31
+
+[decider]
+type = "jury"
+voters = 99
+points = [15, 12, 10, 8, 7, 5, 4, 3, 2, 1]
+tiebreak = "rank_counts"

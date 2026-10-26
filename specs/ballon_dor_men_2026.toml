@@ -1,0 +1,18 @@
+award = "ballon_dor_men"
+edition = 2026
+shortlist_size = 30
+notes = "One journalist per top-100 FIFA men's nation (ranking of 8 Sep 2026). Window ends with the 2026 World Cup final. Ceremony 26 Oct 2026, London Palladium."
+sources = [
+  "https://www.sportsmole.co.uk/football/ballon-dor/feature/how-does-ballon-dor-voting-work_607657.html",
+  "https://www.tntsports.co.uk/football/ballon-d-or/2026/voting-criteria-nominees-points-explained-awards_sto23337809/story.shtml",
+]
+
+[window]
+start = 2025-08-03
+end = 2026-07-19
+
+[decider]
+type = "jury"
+voters = 100
+points = [15, 12, 10, 8, 7, 5, 4, 3, 2, 1]
+tiebreak = "rank_counts"

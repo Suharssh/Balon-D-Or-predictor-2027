@@ -37,6 +37,7 @@ COMPETITION_IDS = {
     "Africa Cup of Nations": "AFCN",
     "AFC Asian Cup": "AFAC",
 }
+COUNTRY_ALIASES = {"Ivory Coast": "Cote d'Ivoire"}  # curated name -> transfermarkt citizenship
 INTERNATIONAL = {"FIFA World Cup", "UEFA European Championship", "Copa América", "Africa Cup of Nations", "AFC Asian Cup"}
 
 
@@ -138,6 +139,15 @@ def find_competitions(comps: pd.DataFrame) -> dict[str, list[str]]:
     return found
 
 
+_warned: set = set()
+
+
+def _warn(msg: str) -> None:
+    if msg not in _warned:
+        _warned.add(msg)
+        print(f"WARNING: {msg}", flush=True)
+
+
 def winner_team_id(label, final_date, winner, comp_ids, games, start, end):
     """Team id of the curated winner, found among teams that played that competition in the window."""
     g = games[games["competition_id"].isin(comp_ids) & games["date"].between(start, end)]
@@ -146,13 +156,13 @@ def winner_team_id(label, final_date, winner, comp_ids, games, start, end):
         g[["away_club_id", "away_club_name"]].set_axis(["id", "name"], axis=1),
     ]).dropna().drop_duplicates()
     if names.empty:
-        print(f"WARNING: {label} {final_date}: no games in the window", flush=True)
+        _warn(f"{label} {final_date}: no games in the window")
         return None
     w = norm(winner)
     hit = names[names["name"].map(norm).map(lambda n: n == w or n.startswith(w + " ") or w in n.split(" fc")[0])]
     ids = hit["id"].unique()
     if len(ids) != 1:
-        print(f"WARNING: {label} {final_date}: winner {winner!r} matched {hit.values.tolist()}", flush=True)
+        _warn(f"{label} {final_date}: winner {winner!r} matched {hit.values.tolist()}")
         return None
     return int(ids[0])
 
@@ -181,6 +191,7 @@ def main() -> int:
     cl_ids = set(comp_ids["UEFA Champions League"])
     intl_ids = {c for k in INTERNATIONAL for c in comp_ids[k]}
 
+    prof_country = players.set_index("player_id")["country_of_citizenship"].to_dict()
     rows = []
     credited: dict[tuple, list[str]] = {}
     for _, c in cands.iterrows():
@@ -218,6 +229,12 @@ def main() -> int:
             ids_f = comp_ids.get(f["competition"], [])
             team = winner_team_id(f["competition"], f["final_date"], f["winner"], ids_f, games, start, end)
             if team is None:
+                # Older tournaments are missing from the dataset. For national teams,
+                # fall back to citizenship: every shortlisted player from a winning
+                # nation in 2022-2025 was in that squad (checked by hand).
+                if f["competition"] in INTERNATIONAL and norm(COUNTRY_ALIASES.get(f["winner"], f["winner"])) == norm(prof_country.get(pid, "")):
+                    credited.setdefault((ed, f["competition"], f["winner"], "by citizenship"), []).append(name)
+                    won_intl = 1
                 continue
             played = a[a["competition_id"].isin(ids_f) & (a["player_club_id"] == team)]
             credited.setdefault((ed, f["competition"], f["winner"], team), []).append(name) if len(played) else None

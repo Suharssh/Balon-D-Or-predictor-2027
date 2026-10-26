@@ -1,0 +1,14 @@
+edition,competition,final_date,winner,runner_up,notes
+2022,UEFA Champions League,2022-05-28,Real Madrid,Liverpool,
+2022,Africa Cup of Nations,2022-02-06,Senegal,Egypt,Won on penalties
+2023,FIFA World Cup,2022-12-18,Argentina,France,Won on penalties
+2023,UEFA Champions League,2023-06-10,Manchester City,Inter,
+2024,UEFA Champions League,2024-06-01,Real Madrid,Borussia Dortmund,
+2024,UEFA European Championship,2024-07-14,Spain,England,
+2024,Copa América,2024-07-14,Argentina,Colombia,Played 14 Jul US time (15 Jul UTC)
+2024,Africa Cup of Nations,2024-02-11,Ivory Coast,Nigeria,
+2024,AFC Asian Cup,2024-02-10,Qatar,Jordan,
+2025,UEFA Champions League,2025-05-31,Paris Saint-Germain,Inter,
+2026,Africa Cup of Nations,2026-01-18,Morocco,Senegal,Senegal won on the pitch; CAF awarded the title to Morocco on appeal (before Ballon d'Or voting)
+2026,UEFA Champions League,2026-05-30,Paris Saint-Germain,Arsenal,Won on penalties
+2026,FIFA World Cup,2026-07-19,Spain,Argentina,After extra time; dataset ends 6 Jul 2026 so this final is not in it

@@ -28,14 +28,14 @@ ROOT = Path(__file__).resolve().parents[1]
 BASE_URL = "https://pub-e682421888d945d684bcae8890b0ec20.r2.dev/data"
 TABLES = ["players", "appearances", "games", "competitions", "player_valuations", "clubs"]
 
-# Curated competition names -> regex on transfermarkt competition names.
-COMPETITION_PATTERNS = {
-    "UEFA Champions League": r"^(uefa[- ])?champions[- ]league$",
-    "FIFA World Cup": r"^(fifa[- ])?world[- ]cup( \d{4})?$",
-    "UEFA European Championship": r"(european[- ]championship|^euro( \d{4})?$|uefa[- ]euro)",
-    "Copa América": r"copa[- ]america",
-    "Africa Cup of Nations": r"africa[- ]cup[- ]of[- ]nations|^afcon",
-    "AFC Asian Cup": r"asian[- ]cup",
+# Curated competition names -> transfermarkt competition_id.
+COMPETITION_IDS = {
+    "UEFA Champions League": "CL",
+    "FIFA World Cup": "FIWC",
+    "UEFA European Championship": "EURO",
+    "Copa América": "COPA",
+    "Africa Cup of Nations": "AFCN",
+    "AFC Asian Cup": "AFAC",
 }
 INTERNATIONAL = {"FIFA World Cup", "UEFA European Championship", "Copa América", "Africa Cup of Nations", "AFC Asian Cup"}
 
@@ -85,13 +85,15 @@ def load_candidates() -> pd.DataFrame:
 
 
 def match_players(cands: pd.DataFrame, players: pd.DataFrame, apps: pd.DataFrame) -> pd.DataFrame:
-    """Map candidate names to transfermarkt player_id. Overrides win; then exact
+    """Map candidate names to transfermarkt player_id. Overrides (name as spelled on
+    Transfermarkt) win; then exact
     accent-insensitive name; then token containment. Ties go to the player with
     the most minutes in 2021-2026 (filters out namesakes in lower leagues)."""
     overrides_path = ROOT / "data/players/tm_overrides.csv"
     overrides = {}
     if overrides_path.exists():
-        overrides = {r["player"]: int(r["player_id"]) for r in csv.DictReader(open(overrides_path, encoding="utf-8"))}
+        with open(overrides_path, encoding="utf-8") as f:
+            overrides = {r["player"]: r["tm_name"] for r in csv.DictReader(f)}
 
     recent = apps[apps["date"] >= "2021-08-01"].groupby("player_id")["minutes_played"].sum()
     p = players[["player_id", "name", "date_of_birth", "position", "country_of_citizenship"]].copy()
@@ -103,7 +105,7 @@ def match_players(cands: pd.DataFrame, players: pd.DataFrame, apps: pd.DataFrame
     rows = []
     for name in sorted(set(cands["player"])):
         if name in overrides:
-            hit = p[p["player_id"] == overrides[name]]
+            hit = p[p["key"] == norm(overrides[name])]
             how = "override"
         else:
             k = norm(name)
@@ -126,12 +128,13 @@ def match_players(cands: pd.DataFrame, players: pd.DataFrame, apps: pd.DataFrame
 
 
 def find_competitions(comps: pd.DataFrame) -> dict[str, list[str]]:
+    known = dict(zip(comps["competition_id"], comps["name"]))
     found = {}
-    names = comps.assign(key=comps["name"].map(norm))
-    for label, pat in COMPETITION_PATTERNS.items():
-        ids = names[names["key"].str.contains(pat, regex=True)]["competition_id"].tolist()
-        found[label] = ids
-        print(f"competition {label!r} -> {ids}", flush=True)
+    for label, cid in COMPETITION_IDS.items():
+        if cid not in known:
+            raise SystemExit(f"competition {cid} ({label}) is not in the dataset")
+        print(f"competition {label!r} -> {cid} ({known[cid]})", flush=True)
+        found[label] = [cid]
     return found
 
 
@@ -142,6 +145,9 @@ def winner_team_id(label, final_date, winner, comp_ids, games, start, end):
         g[["home_club_id", "home_club_name"]].set_axis(["id", "name"], axis=1),
         g[["away_club_id", "away_club_name"]].set_axis(["id", "name"], axis=1),
     ]).dropna().drop_duplicates()
+    if names.empty:
+        print(f"WARNING: {label} {final_date}: no games in the window", flush=True)
+        return None
     w = norm(winner)
     hit = names[names["name"].map(norm).map(lambda n: n == w or n.startswith(w + " ") or w in n.split(" fc")[0])]
     ids = hit["id"].unique()
@@ -176,6 +182,7 @@ def main() -> int:
     intl_ids = {c for k in INTERNATIONAL for c in comp_ids[k]}
 
     rows = []
+    credited: dict[tuple, list[str]] = {}
     for _, c in cands.iterrows():
         ed, name = int(c["edition"]), c["player"]
         start, end, total_pts = editions[ed]
@@ -213,6 +220,7 @@ def main() -> int:
             if team is None:
                 continue
             played = a[a["competition_id"].isin(ids_f) & (a["player_club_id"] == team)]
+            credited.setdefault((ed, f["competition"], f["winner"], team), []).append(name) if len(played) else None
             if len(played):
                 if f["competition"] in INTERNATIONAL:
                     won_intl = 1
@@ -243,6 +251,8 @@ def main() -> int:
         row["position"] = prof["position"]
         rows.append(row)
 
+    for (ed, comp, winner, team), names in sorted(credited.items()):
+        print(f"{ed} {comp} won by {winner} (team {team}): {names}", flush=True)
     out = pd.DataFrame(rows).sort_values(["edition", "points"], ascending=[True, False])
     # Reputation: share of points in the previous edition (0 if not in the top 30).
     prev = out[["edition", "player", "points_share"]].assign(edition=lambda d: d["edition"] + 1)
